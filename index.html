@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exemplo de Página</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+            background-color: #f4f4f4;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            background: linear-gradient(135deg, yellow, red);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+            width: 300px;
+        }
+        input, button {
+            padding: 10px;
+            margin: 10px 0;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .pix-key {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            word-break: break-all;
+        }
+        #confirmationMessage {
+            display: none;
+            margin-top: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: default;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Ganhar 5k de seguidores por dia, pagando uma única vez</h1>
+        <p>Insira o link do seu perfil do Instagram e pague R$10,00 uma única vez.</p>
+        <form onsubmit="event.preventDefault(); atualizarBotao();">
+            <input type="text" name="instagram_link" placeholder="Link do seu Instagram" required>
+            <input type="number" name="valor" value="10" readonly>
+            <button type="submit" id="payButton">Pagar e Receber Seguidores</button>
+        </form>
+        <div class="pix-key">
+            <strong>Minha chave PIX:</strong><br>
+            452dfec7-afa0-4b41-853c-f8954574f9e8
+        </div>
+        <button id="confirmationMessage">Os seguidores chegarão em 5 minutos</button>
+    </div>
+
+    <script>
+        let clickCount = 0;
+        
+        function atualizarBotao() {
+            const button = document.getElementById('payButton');
+            const confirmationMessage = document.getElementById('confirmationMessage');
+            clickCount++;
+            
+            if (clickCount === 1) {
+                button.innerText = 'Atualizando aperte novamente';
+            } else if (clickCount === 2) {
+                button.innerText = 'Já fez o pagamento? Aperte novamente';
+            } else if (clickCount === 3) {
+                button.innerText = 'Confirmado';
+                button.style.backgroundColor = '#007bff';
+                button.style.cursor = 'default';
+                button.disabled = true;
+                confirmationMessage.style.display = 'block';
+            }
+        }
+    </script>
+
+</body>
+</html>
+
